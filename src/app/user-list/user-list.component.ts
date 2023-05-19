@@ -38,11 +38,26 @@ export class UserListComponent implements OnInit {
       this.partOfUsers = res
       this.totalElements = res.length
     })
+      for (let i=0;i<10;i++){
+        this.partOfUsers.push(this.userList[i])
+      }
+
 
   }
 
   setPage(event: any) {
-    console.log(event)
+    console.log(event.offset*10)
+    let start=event.offset*10
+    let end
+    if(event.offset!==0){
+      end=start*2
+    }else end=10
+    this.partOfUsers=[]
+      for (let i=start;i<end;i++){
+        if(this.userList[i]!==undefined){
+          this.partOfUsers.push(this.userList[i])
+        }
+      }
 
   }
 
