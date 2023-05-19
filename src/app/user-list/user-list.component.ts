@@ -4,6 +4,7 @@ import {userModel} from "./userModel";
 import {MatDialog} from "@angular/material/dialog";
 import {UserFormComponent} from "../user-form/user-form.component";
 import {HttpClient} from "@angular/common/http";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-user-list',
@@ -12,12 +13,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class UserListComponent implements OnInit {
   ngOnInit(): void {
-    this.http.get<userModel[]>('http://localhost:3000/users').subscribe(res => {
-      console.log('res', res)
-      this.userList=res
-      this.totalElements =res.length
-
-    })
+    this.getUsersData()
   }
 
   constructor(public dialog: MatDialog,
@@ -28,6 +24,14 @@ export class UserListComponent implements OnInit {
   totalElements: number = 0
   page = new Page();
 
+  getUsersData() {
+    this.http.get<userModel[]>('http://localhost:3000/users/').subscribe(res => {
+      this.userList = res
+      this.totalElements = res.length
+
+    })
+
+  }
 
   setPage(event: any) {
 
@@ -38,5 +42,25 @@ export class UserListComponent implements OnInit {
     this.dialog.open(UserFormComponent, {
       data: row,
     });
+  }
+
+  deleteUser(row: userModel) {
+    Swal.fire({
+      title: 'آیا این کابر حذف شود ؟',
+      text: "بعد از حذف قادر به بازگردانی آن نخواهید بود !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3f8035',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'انصراف',
+
+      confirmButtonText: 'بله '
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.http.delete('http://localhost:3000/users/' + row.id).subscribe(res => {
+          this.getUsersData()
+        })
+      }
+    })
   }
 }
