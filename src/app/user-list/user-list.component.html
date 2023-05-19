@@ -31,7 +31,19 @@
 
     <ngx-datatable-column name="وضعیت کاربر" [flexGrow]="2">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        <mat-slide-toggle  [(ngModel)]="row.status"> </mat-slide-toggle>
+        <mat-slide-toggle [(ngModel)]="row.status"></mat-slide-toggle>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="سطح دسترسی کاربر" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.accessLevel}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="" [flexGrow]="2">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <span (click)="editUser(row)" style="cursor: pointer">ویرایش </span>
       </ng-template>
     </ngx-datatable-column>
 
