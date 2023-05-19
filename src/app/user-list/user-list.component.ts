@@ -26,6 +26,7 @@ export class UserListComponent implements OnInit {
   partOfUsers: userModel[] = []
   totalElements: number = 0
   page = new Page();
+  emailFilter: string = ''
 
   filterForm = this.fb.group({
     email: [''],
@@ -38,26 +39,26 @@ export class UserListComponent implements OnInit {
       this.partOfUsers = res
       this.totalElements = res.length
     })
-      for (let i=0;i<10;i++){
-        this.partOfUsers.push(this.userList[i])
-      }
+    for (let i = 0; i < 10; i++) {
+      this.partOfUsers.push(this.userList[i])
+    }
 
 
   }
 
   setPage(event: any) {
-    console.log(event.offset*10)
-    let start=event.offset*10
+    console.log(event.offset * 10)
+    let start = event.offset * 10
     let end
-    if(event.offset!==0){
-      end=start*2
-    }else end=10
-    this.partOfUsers=[]
-      for (let i=start;i<end;i++){
-        if(this.userList[i]!==undefined){
-          this.partOfUsers.push(this.userList[i])
-        }
+    if (event.offset !== 0) {
+      end = start * 2
+    } else end = 10
+    this.partOfUsers = []
+    for (let i = start; i < end; i++) {
+      if (this.userList[i] !== undefined) {
+        this.partOfUsers.push(this.userList[i])
       }
+    }
 
   }
 
@@ -92,12 +93,20 @@ export class UserListComponent implements OnInit {
     })
   }
 
-  filter() {
-    if(this.filterForm.get('accessLevel')?.value==="ALL"){
+  filterAccessLevel() {
+    if (this.filterForm.get('accessLevel')?.value === "ALL") {
       this.getUsersData()
-    }else {
+    } else {
       this.partOfUsers = this.userList.filter(item => item.accessLevel === this.filterForm.get('accessLevel')?.value)
       this.totalElements = this.partOfUsers.length
+    }
+  }
+
+  filterEmail() {
+    console.log(this.emailFilter)
+    for(let item of this.userList){
+        this.partOfUsers = this.userList.filter(item => item.email.includes(this.emailFilter))
+
     }
   }
 }

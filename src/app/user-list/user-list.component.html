@@ -3,14 +3,14 @@
     <div class="col-6">
       <mat-form-field class="example-full-width">
         <mat-label>email</mat-label>
-        <input matInput placeholder="*****@example.com" formControlName="email" (keyup)="filter()">
+        <input matInput placeholder="*****@example.com" [(ngModel)]="emailFilter"  formControlName="email" (keyup)="filterEmail()">
       </mat-form-field>
     </div>
 
     <div class="col-6">
       <mat-form-field>
         <mat-label>سطح دسترسی</mat-label>
-        <mat-select (selectionChange)="filter()" formControlName="accessLevel">
+        <mat-select (selectionChange)="filterAccessLevel()" formControlName="accessLevel">
           <mat-option [value]="'ADMIN'">ادمین</mat-option>
           <mat-option [value]="'USER'">کاربر</mat-option>
           <mat-option [value]="'ALL'">همه</mat-option>
