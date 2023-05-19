@@ -1,9 +1,28 @@
-<mat-dialog-content class="mat-typography" style="height: 300px;width: 300px">
-<form [formGroup]="userForm">
-    <mat-form-field class="example-full-width" >
-    <mat-label >email </mat-label>
-    <input matInput placeholder="*****@example.com"  formControlName="email">
-  </mat-form-field>
-  <button (click)="saveChanges()">ثبت تغییرات</button>
-</form>
+<mat-dialog-content class="mat-typography" style="height: 300px;width: 300px;direction: rtl!important;">
+  <form [formGroup]="userForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>email</mat-label>
+      <input matInput placeholder="*****@example.com" formControlName="email">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" style="margin-top: 20px">
+      <mat-label>سطح دسترسی</mat-label>
+      <mat-select formControlName="accessLevel">
+        <mat-option [value]="'ADMIN'">ادمین</mat-option>
+        <mat-option [value]="'USER'">کاربر</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <section>
+      <mat-label>وضعیت کاربر</mat-label>
+      <mat-button-toggle-group aria-label="Font Style" formControlName="status">
+        <mat-button-toggle [value]=true>فعال</mat-button-toggle>
+        <mat-button-toggle [value]=false>غیرفعال</mat-button-toggle>
+      </mat-button-toggle-group>
+    </section>
+
+    <div class="col-12" style="margin-top: 100px">
+      <button mat-button color="primary" (click)="saveChanges()" style="background-color: aliceblue">ثبت تغییرات
+      </button>
+    </div>
+  </form>
 </mat-dialog-content>

@@ -18,15 +18,17 @@ export class UserFormComponent {
   }
 
   userForm = this.fb.group({
+    id:[''],
     email: [''],
+    date: [''],
+    status: [''],
+    accessLevel: [''],
   })
 
   saveChanges() {
     console.log(this.userForm.value)
-    this.data.email=this.userForm.get('email')?.value
-     this.http.put('http://localhost:3000/users/' + this.data.id,this.data).subscribe(res => {
-
-
+     this.http.put('http://localhost:3000/users/' + this.data.id,this.userForm.value).subscribe(res => {
+       console.log(res)
         })
   }
 }
