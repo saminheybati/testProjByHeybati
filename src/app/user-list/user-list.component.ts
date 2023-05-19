@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {UserFormComponent} from "../user-form/user-form.component";
 import {HttpClient} from "@angular/common/http";
 import Swal from "sweetalert2";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-user-list',
@@ -17,12 +18,19 @@ export class UserListComponent implements OnInit {
   }
 
   constructor(public dialog: MatDialog,
+              private fb: FormBuilder,
               private http: HttpClient) {
   }
 
   userList: userModel[] = []
+  partOfUsers: userModel[] = []
   totalElements: number = 0
   page = new Page();
+
+  filterForm = this.fb.group({
+    email: [''],
+    accessLevel: [''],
+  })
 
   getUsersData() {
     this.http.get<userModel[]>('http://localhost:3000/users/').subscribe(res => {
@@ -66,5 +74,9 @@ export class UserListComponent implements OnInit {
         })
       }
     })
+  }
+
+  filter() {
+    this.partOfUsers=this.userList.filter(item=>item.accessLevel===this.filterForm.get('accessLevel')?.value)
   }
 }
