@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+  display: flex !important;
+  justify-content: center !important;
+
+}
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+  display: flex !important;
+  justify-content: center !important;
+}
+.my-border {
+  margin: 30px;
+}
+.ngx-datatable.material{
+  direction: rtl!important;
+}
