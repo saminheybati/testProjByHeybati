@@ -18,7 +18,7 @@ export class UserFormComponent {
   }
 
   userForm = this.fb.group({
-    id:[''],
+    id: [''],
     email: [''],
     date: [''],
     status: [''],
@@ -27,8 +27,9 @@ export class UserFormComponent {
 
   saveChanges() {
     console.log(this.userForm.value)
-     this.http.put('http://localhost:3000/users/' + this.data.id,this.userForm.value).subscribe(res => {
-       console.log(res)
-        })
+    this.http.put('http://localhost:3000/users/' + this.data.id, this.userForm.value).subscribe(res => {
+      console.log(res)
+  // window.location.reload()
+    })
   }
 }

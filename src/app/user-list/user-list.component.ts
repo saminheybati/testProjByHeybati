@@ -39,10 +39,14 @@ export class UserListComponent implements OnInit {
 
 
   editUser(row: userModel) {
-    this.dialog.open(UserFormComponent, {
+    const dialogRef = this.dialog.open(UserFormComponent, {
       data: row,
     });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getUsersData()
+    });
   }
+
 
   deleteUser(row: userModel) {
     Swal.fire({
