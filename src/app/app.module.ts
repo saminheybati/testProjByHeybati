@@ -4,16 +4,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent
   ],
-    imports: [
-        BrowserModule,
-        NgxDatatableModule
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    NgxDatatableModule,
+    MatSlideToggleModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

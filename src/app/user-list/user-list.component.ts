@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Page} from "./pageModel";
 import {userModel} from "./userModel";
 
@@ -7,7 +7,15 @@ import {userModel} from "./userModel";
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit{
+  ngOnInit(): void {
+    this.userList.push({
+      email:"saminHeybati@yahoo.com",
+      date:"any",
+      status:true
+    })
+    this.totalElements=1
+  }
   userList: userModel[] = []
   totalElements: number = 0
   page = new Page();
@@ -16,6 +24,8 @@ export class UserListComponent {
   setPage(event: any) {
 
   }
+
+
 
 
 
