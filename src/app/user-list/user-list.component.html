@@ -31,7 +31,9 @@
 
     <ngx-datatable-column name="وضعیت کاربر" [flexGrow]="2">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        <mat-slide-toggle [(ngModel)]="row.status"></mat-slide-toggle>
+<!--        <mat-slide-toggle [(ngModel)]="row.status"></mat-slide-toggle>-->
+        <span *ngIf="row.status===true">فعال</span>
+        <span *ngIf="row.status===false">غیرفعال</span>
       </ng-template>
     </ngx-datatable-column>
 

@@ -10,6 +10,8 @@ import { UserFormComponent } from './user-form/user-form.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatInputModule} from "@angular/material/input";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatDialogModule,
     NgxDatatableModule,
     MatSlideToggleModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

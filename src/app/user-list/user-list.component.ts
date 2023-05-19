@@ -3,6 +3,7 @@ import {Page} from "./pageModel";
 import {userModel} from "./userModel";
 import {MatDialog} from "@angular/material/dialog";
 import {UserFormComponent} from "../user-form/user-form.component";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-user-list',
@@ -11,16 +12,16 @@ import {UserFormComponent} from "../user-form/user-form.component";
 })
 export class UserListComponent implements OnInit {
   ngOnInit(): void {
-    this.userList.push({
-      email: "saminHeybati@yahoo.com",
-      date: "any",
-      status: true,
-      accessLevel: "ADMIN"
+    this.http.get<userModel[]>('http://localhost:3000/users').subscribe(res => {
+      console.log('res', res)
+      this.userList=res
+      this.totalElements =res.length
+
     })
-    this.totalElements = 1
   }
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,
+              private http: HttpClient) {
   }
 
   userList: userModel[] = []

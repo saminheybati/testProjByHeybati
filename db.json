@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "saminHeybati@yahoo.com",
+      "date": "any",
+      "status": false,
+      "accessLevel": "ADMIN"
+    },
+    {
+      "id": 2,
+      "email": "asdfsdfsf@yahoo.com",
+      "date": "any",
+      "status": false,
+      "accessLevel": "ADMIN"
+    },
+    {
+      "id": 3,
+      "email": "aaaaaaaaaaaaaaam",
+      "date": "any",
+      "status": true,
+      "accessLevel": "ADMIN"
+    },
+    {
+      "id": 4,
+      "email": "kh@yahoo.com",
+      "date": "any",
+      "status": true,
+      "accessLevel": "ADMIN"
+    }
+  ]
+}

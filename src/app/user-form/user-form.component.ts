@@ -12,6 +12,7 @@ export class UserFormComponent {
   constructor(private fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     console.log(data)
+    this.userForm.patchValue(data)
   }
 
   userForm = this.fb.group({
