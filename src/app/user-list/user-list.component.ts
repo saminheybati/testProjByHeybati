@@ -35,13 +35,14 @@ export class UserListComponent implements OnInit {
   getUsersData() {
     this.http.get<userModel[]>('http://localhost:3000/users/').subscribe(res => {
       this.userList = res
+      this.partOfUsers = res
       this.totalElements = res.length
-
     })
 
   }
 
   setPage(event: any) {
+    console.log(event)
 
   }
 
@@ -77,6 +78,11 @@ export class UserListComponent implements OnInit {
   }
 
   filter() {
-    this.partOfUsers=this.userList.filter(item=>item.accessLevel===this.filterForm.get('accessLevel')?.value)
+    if(this.filterForm.get('accessLevel')?.value==="ALL"){
+      this.getUsersData()
+    }else {
+      this.partOfUsers = this.userList.filter(item => item.accessLevel === this.filterForm.get('accessLevel')?.value)
+      this.totalElements = this.partOfUsers.length
+    }
   }
 }
